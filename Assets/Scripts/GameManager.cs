@@ -1,15 +1,36 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
     public float restartDelay = 2f;
+    public float retryDelay = 3f;
     public GameObject completeLevelUi;
+    public Text livesText;
+
+    int lives = 3;
+
+    private void Start() {
+        if (PlayerPrefs.GetInt("current_lives") == 0 || PlayerPrefs.GetString("level") != SceneManager.GetActiveScene().name)
+        {
+            //Debug.Log("<If>Start..."+PlayerPrefs.GetString("level", SceneManager.GetActiveScene().name));
+            livesText.text = lives.ToString();
+            PlayerPrefs.SetInt("current_lives", 3);
+            PlayerPrefs.SetString("level", SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            //Debug.Log("<Else>Start..."+PlayerPrefs.GetString("level", SceneManager.GetActiveScene().name));
+            PlayerPrefs.SetString("level", SceneManager.GetActiveScene().name);
+            livesText.text = PlayerPrefs.GetInt("current_lives").ToString();
+        }
+        
+    }
 
     public void CompleteLev()
     {
-        Debug.Log("From gamemanager");
         completeLevelUi.SetActive(true);
     }
     public void EndGame ()
@@ -17,8 +38,23 @@ public class GameManager : MonoBehaviour
         if (gameHasEnded == false)
         {
             gameHasEnded = true;
-            Invoke("Restart", restartDelay);
+            lives = int.Parse(livesText.text) - 1;
+            PlayerPrefs.SetInt("current_lives", lives);
+            livesText.text = lives.ToString();
+            if (lives != 0)
+            {
+                Invoke("Restart", restartDelay);
+            }
+            else if (lives == 0)
+            {
+                Invoke("Retry", retryDelay);
+            }
         }
+    }
+
+    void Retry()
+    {
+        SceneManager.LoadScene("Retry");
     }
 
     void Restart()
