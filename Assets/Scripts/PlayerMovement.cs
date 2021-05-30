@@ -5,7 +5,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float forwardForce = 2000f;
     public float sidewayForce = 500f;
+    public float jumpForce = 500f;
+
     public Rigidbody rb;
+
+    public bool isGrounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +22,20 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-        if ( Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow)) {
+        if ( Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
+        {
             rb.AddForce(sidewayForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-       } 
+        }
         
-        if ( Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow)){
+        if ( Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow))
+        {
             rb.AddForce(-sidewayForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+
+        if(Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.Impulse);
+            isGrounded = false;
         }
 
         if (rb.position.y < 0)

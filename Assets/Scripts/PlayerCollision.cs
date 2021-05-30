@@ -10,6 +10,11 @@ public class PlayerCollision : MonoBehaviour
         {
             movement.enabled = false;
             FindObjectOfType<GameManager>().EndGame();
-        } 
+        }
+        if(collision.gameObject.name == "Ground")
+        {
+            movement.isGrounded = true;
+            Debug.Log("Ground...."+movement.isGrounded);
+        }
     }
 }
