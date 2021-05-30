@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     int lives = 3;
 
     private void Start() {
-        if (PlayerPrefs.GetInt("current_lives") == 0 || PlayerPrefs.GetString("level") != SceneManager.GetActiveScene().name)
+        if (PlayerPrefs.GetInt("current_lives") == 0 || PlayerPrefs.GetString("level") == "Level1" && PlayerPrefs.GetString("levStat") == "Restart")
         {
             //Debug.Log("<If>Start..."+PlayerPrefs.GetString("level", SceneManager.GetActiveScene().name));
             livesText.text = lives.ToString();
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLev()
     {
+        PlayerPrefs.SetInt("current_lives", PlayerPrefs.GetInt("current_lives") + lives);
         completeLevelUi.SetActive(true);
     }
     public void EndGame ()
@@ -43,10 +44,12 @@ public class GameManager : MonoBehaviour
             livesText.text = lives.ToString();
             if (lives != 0)
             {
+                PlayerPrefs.SetString("LevStat", "Restart");
                 Invoke("Restart", restartDelay);
             }
             else if (lives == 0)
             {
+                PlayerPrefs.SetString("LevStat", "null");
                 Invoke("Retry", retryDelay);
             }
         }
