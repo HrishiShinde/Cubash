@@ -694,7 +694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -348.3, y: -47.145}
+  m_AnchoredPosition: {x: -164, y: -46.59}
   m_SizeDelta: {x: 229.70001, y: 94.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &362413512
@@ -1174,7 +1174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.7, y: -47.145}
+  m_AnchoredPosition: {x: 135, y: -46.595}
   m_SizeDelta: {x: 229.70001, y: 94.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486288896
@@ -1635,7 +1635,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 2.13e-43, y: 1e-45, z: 3.4e-44, w: 2.2959e-41}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3166,7 +3166,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 443.5, y: 253.13}
+  m_AnchoredPosition: {x: 278, y: 252.57}
   m_SizeDelta: {x: 240.20001, y: 94.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221121228
@@ -3461,7 +3461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -269, y: 253.4}
+  m_AnchoredPosition: {x: -154, y: 253.41}
   m_SizeDelta: {x: 229.70001, y: 94.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1498416944
@@ -3489,7 +3489,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 69
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1

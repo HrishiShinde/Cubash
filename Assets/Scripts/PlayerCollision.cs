@@ -14,7 +14,7 @@ public class PlayerCollision : MonoBehaviour
         if(collision.gameObject.name == "Ground")
         {
             movement.isGrounded = true;
-            Debug.Log("Ground...."+movement.isGrounded);
+            // Debug.Log("Ground...."+movement.isGrounded);
         }
     }
 }

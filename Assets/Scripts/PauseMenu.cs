@@ -7,7 +7,6 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject PauseMenuUI;
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -33,7 +32,8 @@ public class PauseMenu : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1f;
-        //PlayerPrefs.SetString("level", "new");
+        PlayerPrefs.SetString("LevStat", "Retry");
+        PlayerPrefs.SetString("level", "new");
         SceneManager.LoadScene("Menu");
     }
 

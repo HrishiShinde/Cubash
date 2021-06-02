@@ -13,16 +13,16 @@ public class GameManager : MonoBehaviour
     int lives = 3;
 
     private void Start() {
-        if (PlayerPrefs.GetInt("current_lives") == 0 || PlayerPrefs.GetString("level") == "Level1" && PlayerPrefs.GetString("levStat") == "Restart")
+        if (PlayerPrefs.GetInt("current_lives") == 0 || PlayerPrefs.GetString("level") == "Level1" && PlayerPrefs.GetString("LevStat") != "Restart")
         {
-            //Debug.Log("<If>Start..."+PlayerPrefs.GetString("level", SceneManager.GetActiveScene().name));
+            Debug.Log("<If>Start..."+PlayerPrefs.GetString("level")+"--"+PlayerPrefs.GetString("current_lives")+"--"+PlayerPrefs.GetString("LevStat"));
             livesText.text = lives.ToString();
             PlayerPrefs.SetInt("current_lives", 3);
             PlayerPrefs.SetString("level", SceneManager.GetActiveScene().name);
         }
         else
         {
-            //Debug.Log("<Else>Start..."+PlayerPrefs.GetString("level", SceneManager.GetActiveScene().name));
+            Debug.Log("<Else>Start..."+PlayerPrefs.GetString("level")+"--"+PlayerPrefs.GetInt("current_lives")+"--"+PlayerPrefs.GetString("LevStat"));
             PlayerPrefs.SetString("level", SceneManager.GetActiveScene().name);
             livesText.text = PlayerPrefs.GetInt("current_lives").ToString();
         }
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
             }
             else if (lives == 0)
             {
-                PlayerPrefs.SetString("LevStat", "null");
+                PlayerPrefs.SetString("LevStat", "Retry");
                 Invoke("Retry", retryDelay);
             }
         }

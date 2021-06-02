@@ -16,6 +16,7 @@ public class Credits : MonoBehaviour
     public void Quit()
     {
         Debug.Log("Quit");
+        PlayerPrefs.SetString("LevStat", "Restart");
         Application.Quit();
     }
 }
