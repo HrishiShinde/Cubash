@@ -34,11 +34,13 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         PlayerPrefs.SetString("LevStat", "Retry");
         PlayerPrefs.SetString("level", "new");
+        PlayerPrefs.SetString("isNewGame", "yes");
         SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
+        PlayerPrefs.SetString("isNewGame", "yes");
         Application.Quit();
     }
 

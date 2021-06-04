@@ -8,18 +8,24 @@ public class GameManager : MonoBehaviour
     public float restartDelay = 2f;
     public float retryDelay = 3f;
     public GameObject completeLevelUi;
+    public GameObject InstrucMenuUi;
     public Text livesText;
 
     int lives = 3;
 
     private void Start() {
-        if (PlayerPrefs.GetInt("current_lives") == 0 || PlayerPrefs.GetString("level") == "Level1" && PlayerPrefs.GetString("LevStat") != "Restart")
+        if (PlayerPrefs.GetString("isNewGame") == "yes"){
+            InstrucMenuUi.SetActive(true);
+            Time.timeScale = 0f;
+            Debug.Log("<Start> panel visible");
+        }
+        if (PlayerPrefs.GetInt("current_lives") == 0 || SceneManager.GetActiveScene().name == "Level1" && PlayerPrefs.GetString("LevStat") != "Restart")
         {
             Debug.Log("<If>Start..."+PlayerPrefs.GetString("level")+"--"+PlayerPrefs.GetString("current_lives")+"--"+PlayerPrefs.GetString("LevStat"));
             livesText.text = lives.ToString();
             PlayerPrefs.SetInt("current_lives", 3);
             PlayerPrefs.SetString("level", SceneManager.GetActiveScene().name);
-        }
+        } 
         else
         {
             Debug.Log("<Else>Start..."+PlayerPrefs.GetString("level")+"--"+PlayerPrefs.GetInt("current_lives")+"--"+PlayerPrefs.GetString("LevStat"));
@@ -27,6 +33,21 @@ public class GameManager : MonoBehaviour
             livesText.text = PlayerPrefs.GetInt("current_lives").ToString();
         }
         
+    }
+
+    private void Update() {
+        // if (PlayerPrefs.GetString("isNewGame") == "yes"){
+        //     Debug.Log("isNewGame"+PlayerPrefs.GetString("isNewGame"));
+            
+        // }
+        if (Input.anyKey && SceneManager.GetActiveScene().name == "Level1")
+        {
+            Debug.Log("Key is pressed.");
+            Time.timeScale = 1f;
+            PlayerPrefs.SetString("isNewGame", "no");
+            Debug.Log("<Update>Set to no!");
+            InstrucMenuUi.SetActive(false);
+        }
     }
 
     public void CompleteLev()
@@ -50,6 +71,8 @@ public class GameManager : MonoBehaviour
             else if (lives == 0)
             {
                 PlayerPrefs.SetString("LevStat", "Retry");
+                PlayerPrefs.SetString("isNewGame", "yes");
+                Debug.Log("Set to yes!");
                 Invoke("Retry", retryDelay);
             }
         }
